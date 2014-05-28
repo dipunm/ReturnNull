@@ -7,11 +7,11 @@ namespace ReturnNull.UmbracoApi.Wrappers
     /// A concrete wrapper over the UmbracoContext providing access
     /// to simple UmbracoContext properties.
     /// </summary>
-    public class SudoUmbracoContext : IUmbracoContext
+    public class PseudoUmbracoContext : IUmbracoContext
     {
         private readonly UmbracoContext _context;
 
-        public SudoUmbracoContext(UmbracoContext context)
+        public PseudoUmbracoContext(UmbracoContext context)
         {
             _context = context;
         }

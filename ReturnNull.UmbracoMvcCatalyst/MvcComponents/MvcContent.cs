@@ -43,7 +43,11 @@ namespace ReturnNull.UmbracoMvcCatalyst
 
         public string Url
         {
-            get { return _controllerContext.HttpContext.Request.Url.PathAndQuery; }
+            get
+            {
+                var url = _controllerContext.HttpContext.Request.Url;
+                return url == null ? null : url.PathAndQuery;
+            }
         }
         
         public object this[string alias]

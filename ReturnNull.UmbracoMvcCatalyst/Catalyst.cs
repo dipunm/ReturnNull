@@ -4,11 +4,8 @@ using System.Reflection;
 using System.Web.Mvc;
 using System.Web.Routing;
 using ReturnNull.UmbracoApi;
-using ReturnNull.UmbracoApi.Wrappers;
 using umbraco;
 using Umbraco.Core;
-using Umbraco.Core.Models;
-using Umbraco.Web;
 
 namespace ReturnNull.UmbracoMvcCatalyst
 {
@@ -61,39 +58,6 @@ namespace ReturnNull.UmbracoMvcCatalyst
                     }
                     ).RouteHandler = surfaceRouteHandler;
             }
-        }
-    }
-
-    /// <summary>
-    /// Catalyst attribute wll 
-    /// </summary>
-    public class UmbracoMvcCatalystAttribute : ActionFilterAttribute
-    {
-        public override void OnResultExecuting(ResultExecutingContext filterContext)
-        {
-            if (filterContext.HttpContext.Items[Constants.TemplateContentKey] is IPublishedContent)
-                return; //no need to run unnecessarily.
-
-            base.OnResultExecuting(filterContext);
-            var contentId = UmbracoContext.Current.PageId;
-            IPublishedContent content;
-            if (contentId == null)
-            {
-                content = new MvcContent(filterContext.Controller.ControllerContext);
-            }
-            else
-            {
-                var contentStore = DependencyResolver
-                    .Current
-                    .GetService(typeof (IPublishedContentStore)) 
-                    as IPublishedContentStore;
-
-                content = contentStore != null ? 
-                    contentStore.GetById(contentId.Value) : 
-                    UmbracoContext.Current.ContentCache.GetById(contentId.Value);
-            }
-
-            filterContext.HttpContext.Items[Constants.TemplateContentKey] = content;
         }
     }
 }
