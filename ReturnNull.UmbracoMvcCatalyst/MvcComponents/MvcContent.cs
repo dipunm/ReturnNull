@@ -1,14 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Web.Mvc;
-using ReturnNull.UmbracoApi.Wrappers;
 using Umbraco.Core.Models;
 using Umbraco.Core.Models.PublishedContent;
-using Umbraco.Web.PublishedCache;
 
-namespace ReturnNull.UmbracoMvcCatalyst
+namespace ReturnNull.UmbracoMvcCatalyst.MvcComponents
 {
     public sealed class MvcContent : IPublishedContent
     {

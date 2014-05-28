@@ -1,15 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 using System.Web.Mvc;
 using Umbraco.Core.Configuration;
 using Umbraco.Core.IO;
 using Umbraco.Core.Models;
 using Umbraco.Web;
-using Umbraco.Web.Mvc;
 
-namespace ReturnNull.UmbracoMvcCatalyst
+namespace ReturnNull.UmbracoMvcCatalyst.MvcComponents
 {
     /// <summary>
     /// Provides a Model agnostic base page for umbraco templates.

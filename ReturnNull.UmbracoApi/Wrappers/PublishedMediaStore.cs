@@ -223,7 +223,7 @@ namespace ReturnNull.UmbracoApi.Wrappers
         /// </remarks>
         public IPublishedContent GetById(int contentId)
         {
-            _mediaCache.GetById(contentId);
+            return _mediaCache.GetById(contentId);
         }
 
         /// <summary>

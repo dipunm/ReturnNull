@@ -8,7 +8,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("ReturnNull.MvcTools")]
 [assembly: AssemblyDescription("Provides some useful tools for use within an MVC project.")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Fipun Mistry")]
+[assembly: AssemblyCompany("Dipun Mistry")]
 [assembly: AssemblyProduct("ReturnNull.MvcTools")]
 [assembly: AssemblyCopyright("Copyright ©  2014")]
 [assembly: AssemblyTrademark("")]
@@ -34,3 +34,4 @@ using System.Runtime.InteropServices;
 // [assembly: AssemblyVersion("1.0.*")]
 [assembly: AssemblyVersion("1.0.0.0")]
 [assembly: AssemblyFileVersion("1.0.0.0")]
+[assembly: AssemblyInformationalVersion("1.0.0-untested01")]

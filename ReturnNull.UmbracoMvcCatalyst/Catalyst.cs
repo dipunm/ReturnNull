@@ -4,6 +4,7 @@ using System.Reflection;
 using System.Web.Mvc;
 using System.Web.Routing;
 using ReturnNull.UmbracoApi;
+using ReturnNull.UmbracoMvcCatalyst.MvcComponents;
 using umbraco;
 using Umbraco.Core;
 

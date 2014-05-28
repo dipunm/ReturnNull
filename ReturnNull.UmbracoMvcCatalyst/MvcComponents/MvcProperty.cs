@@ -1,6 +1,6 @@
 ﻿using Umbraco.Core.Models;
 
-namespace ReturnNull.UmbracoMvcCatalyst
+namespace ReturnNull.UmbracoMvcCatalyst.MvcComponents
 {
     public class MvcProperty : IPublishedProperty
     {

@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 using Umbraco.Web.Models;
 using Umbraco.Web.Mvc;
 
-namespace ReturnNull.UmbracoMvcCatalyst
+namespace ReturnNull.UmbracoMvcCatalyst.MvcComponents
 {
     /// <summary>
     /// An alternative HijackingController base class with no direct dependencies
