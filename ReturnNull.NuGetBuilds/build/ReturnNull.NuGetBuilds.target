@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <BuildDependsOn>
+            $(BuildDependsOn);
+            NuGetPack
+        </BuildDependsOn>
+    </PropertyGroup>
+  
+    <PropertyGroup>
+        <BuildPackages Condition="$(BuildPackages) == ''">true</BuildPackages>
+        <NonInteractiveSwitch Condition=" '$(VisualStudioVersion)' != '' AND '$(OS)' == 'Windows_NT' ">-NonInteractive</NonInteractiveSwitch>
+        <PackageOutputDir Condition="$(PackageOutputDir) == ''">$(SolutionDir)\.nuget\bin</PackageOutputDir>
+        <NuGetTool Condition="'$(NuGetToolsPath)' == ''">$(MSBuildThisFileDirectory)..\..\NuGet.CommandLine.2.8.2\tools\Nuget.exe</NuGetTool>
+        
+        <!-- Commands -->
+        <BuildCommand>$(NuGetTool) pack "$(ProjectPath)" -Properties "Configuration=$(Configuration);Platform=$(Platform)" $(NonInteractiveSwitch) -OutputDirectory "$(PackageOutputDir)" -Symbols -IncludeReferencedProjects</BuildCommand>
+        <UpdateCommand>$(NuGetTool) update -Self</UpdateCommand>
+    </PropertyGroup>
+  
+    <!-- Targets: UpdateNuGet, CreatePackage -->  
+    <!-- Root Target: NuGetPack -->
+  
+    <Target Name="UpdateNuGet">
+        <Exec Command="$(UpdateCommand)"
+            LogStandardErrorAsError="true"
+            Condition=" '$(OS)' == 'Windows_NT' "
+            ContinueOnError="true"
+        />
+    </Target>
+    
+    <Target Name="CreatePackage" Condition="$(BuildPackages) == 'true'" DependsOnTargets="UpdateNuGet">
+        <MakeDir Condition="!Exists('$(PackageOutputDir)')" Directories="$(PackageOutputDir)" />
+        <Exec Command="$(BuildCommand)"
+            LogStandardErrorAsError="true"
+            Condition=" '$(OS)' == 'Windows_NT' "
+            ContinueOnError="true"
+        />
+    </Target>
+        
+    <Target Name="NuGetPack" Condition="$(Configuration) == 'Release'" DependsOnTargets="CreatePackage">
+        <Message Text="NuGet package creation skipped..." Condition="$(BuildPackages) !='true'" />
+        <Message Text="Nuget package created..." Condition="$(BuildPackages) == 'true'" />
+    </Target>
+</Project>
