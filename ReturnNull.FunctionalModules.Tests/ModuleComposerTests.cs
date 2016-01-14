@@ -8,7 +8,7 @@ using NUnit.Framework;
 namespace ReturnNull.FunctionalModules.Tests
 {
     [TestFixture]
-    public class ModuleComposerTests
+    class ModuleComposerTests
     {
         enum NoFunctions
         {
