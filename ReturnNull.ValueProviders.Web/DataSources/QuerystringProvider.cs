@@ -29,6 +29,7 @@ namespace ReturnNull.ValueProviders.Web.DataSources
             public IEnumerable<T> GetValues<T>(string key)
             {
                 return _queryString.GetValues(key)?
+                    .Where(val => TypeDescriptor.GetConverter(typeof(T)).IsValid(val))
                     .Select(val => (T)TypeDescriptor.GetConverter(typeof(T))
                         .ConvertFromInvariantString(val)) ?? Enumerable.Empty<T>();
             }
