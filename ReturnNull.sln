@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.24720.0
+VisualStudioVersion = 14.0.25123.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReturnNull.UmbracoApi", "ReturnNull.UmbracoApi\ReturnNull.UmbracoApi.csproj", "{FAEBDB0E-3C93-4675-908C-1159A8BF4D8C}"
 EndProject
@@ -19,6 +19,12 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReturnNull.FunctionalModules.Tests", "ReturnNull.FunctionalModules.Tests\ReturnNull.FunctionalModules.Tests.csproj", "{8DC819F0-DC24-4A93-9080-714062BEED25}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReturnNull.FunctionModules.AutofacLoader", "ReturnNull.FunctionModules.AutofacLoader\ReturnNull.FunctionModules.AutofacLoader.csproj", "{DD08DC8E-8BAC-42EF-A597-8A89A359A1D8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReturnNull.ValueProviders", "ReturnNull.ValueProviders\ReturnNull.ValueProviders.csproj", "{C9EC1E78-92E7-4C82-9BDC-1F474F1CB143}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReturnNull.ValueProviders.Web", "ReturnNull.ValueProviders.Web\ReturnNull.ValueProviders.Web.csproj", "{877435A7-75BD-418E-85D3-5416351B532F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReturnNull.ValueProviders.Tests", "ReturnNull.ValueProviders.Tests\ReturnNull.ValueProviders.Tests.csproj", "{BB3AA5EA-3DFA-4BD5-9F3D-E7B51A40E35C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -50,6 +56,18 @@ Global
 		{DD08DC8E-8BAC-42EF-A597-8A89A359A1D8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DD08DC8E-8BAC-42EF-A597-8A89A359A1D8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DD08DC8E-8BAC-42EF-A597-8A89A359A1D8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C9EC1E78-92E7-4C82-9BDC-1F474F1CB143}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C9EC1E78-92E7-4C82-9BDC-1F474F1CB143}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C9EC1E78-92E7-4C82-9BDC-1F474F1CB143}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C9EC1E78-92E7-4C82-9BDC-1F474F1CB143}.Release|Any CPU.Build.0 = Release|Any CPU
+		{877435A7-75BD-418E-85D3-5416351B532F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{877435A7-75BD-418E-85D3-5416351B532F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{877435A7-75BD-418E-85D3-5416351B532F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{877435A7-75BD-418E-85D3-5416351B532F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BB3AA5EA-3DFA-4BD5-9F3D-E7B51A40E35C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BB3AA5EA-3DFA-4BD5-9F3D-E7B51A40E35C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BB3AA5EA-3DFA-4BD5-9F3D-E7B51A40E35C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BB3AA5EA-3DFA-4BD5-9F3D-E7B51A40E35C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
