@@ -2,6 +2,6 @@
 {
     public interface IModelBuilder<out TModel>
     {
-        TModel BuildModel(ValueProvider valueProvider);
+        TModel BuildModel(IValueProvider valueProvider);
     }
 }

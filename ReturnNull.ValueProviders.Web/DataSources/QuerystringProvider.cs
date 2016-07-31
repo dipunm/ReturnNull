@@ -1,38 +1,42 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Web.Mvc;
-using ReturnNull.ValueProviders.Web.ModelBinding;
 
 namespace ReturnNull.ValueProviders.Web.DataSources
 {
+    public class FormDataProvider : IValueSourceProvider
+    {
+        public IValueSource Build(ControllerContext controllerContext, ModelBindingContext modelBindingContext)
+        {
+            return new NameValuePairSource(controllerContext.HttpContext.Request.Form);
+        }
+    }
     public class QuerystringProvider : IValueSourceProvider
     {
         public IValueSource Build(ControllerContext controllerContext, ModelBindingContext modelBindingContext)
         {
-            return new QuerystringSource(controllerContext.HttpContext.Request.QueryString);
+            return new NameValuePairSource(controllerContext.HttpContext.Request.QueryString);
         }
 
-        public class QuerystringSource : IValueSource
+    }
+
+    public class NameValuePairSource : IValueSource
+    {
+        private readonly NameValueCollection _queryString;
+
+        public NameValuePairSource(NameValueCollection queryString)
         {
-            private readonly NameValueCollection _queryString;
+            _queryString = queryString;
+        }
 
-            public QuerystringSource(NameValueCollection queryString)
-            {
-                _queryString = queryString;
-            }
-
-            public IEnumerable<T> GetValues<T>(string key)
-            {
-                return _queryString.GetValues(key)?
-                    .Where(val => TypeDescriptor.GetConverter(typeof(T)).IsValid(val))
-                    .Select(val => (T)TypeDescriptor.GetConverter(typeof(T))
-                        .ConvertFromInvariantString(val)) ?? Enumerable.Empty<T>();
-            }
+        public IEnumerable<T> GetValues<T>(string key)
+        {
+            return _queryString.GetValues(key)?
+                .Where(val => TypeDescriptor.GetConverter(typeof(T)).IsValid(val))
+                .Select(val => (T)TypeDescriptor.GetConverter(typeof(T))
+                    .ConvertFromInvariantString(val)) ?? Enumerable.Empty<T>();
         }
     }
 
@@ -45,9 +49,9 @@ namespace ReturnNull.ValueProviders.Web.DataSources
 
         public class ValueSource : IValueSource
         {
-            private readonly IValueProvider _valueProvider;
+            private readonly System.Web.Mvc.IValueProvider _valueProvider;
 
-            public ValueSource(IValueProvider valueProvider)
+            public ValueSource(System.Web.Mvc.IValueProvider valueProvider)
             {
                 _valueProvider = valueProvider;
             }

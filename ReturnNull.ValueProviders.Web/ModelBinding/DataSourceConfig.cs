@@ -10,7 +10,7 @@ namespace ReturnNull.ValueProviders.Web.ModelBinding
             = new Dictionary<string, IValueSourceProvider>();
 
 
-        public static ValueProvider BuildValueProvider(ControllerContext controllerContext, ModelBindingContext modelBindingContext)
+        public static IValueProvider BuildValueProvider(ControllerContext controllerContext, ModelBindingContext modelBindingContext)
         {
             var sources = DataSources.ToDictionary(
                 kv => kv.Key,

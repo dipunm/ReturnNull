@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.Specialized;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Specialized;
 using NUnit.Framework;
 using ReturnNull.ValueProviders.Web.DataSources;
 using Shouldly;
@@ -20,7 +15,7 @@ namespace ReturnNull.ValueProviders.Tests.DataSources
             {
                 {"key", "value"}
             };
-            var source = new QuerystringProvider.QuerystringSource(querystring);
+            var source = new NameValuePairSource(querystring);
 
             var result = source.GetValues<string>("key");
 
@@ -35,7 +30,7 @@ namespace ReturnNull.ValueProviders.Tests.DataSources
                 {"key", "value"},
                 {"key", "value2"}
             };
-            var source = new QuerystringProvider.QuerystringSource(querystring);
+            var source = new NameValuePairSource(querystring);
 
             var result = source.GetValues<string>("key");
 
@@ -50,7 +45,7 @@ namespace ReturnNull.ValueProviders.Tests.DataSources
                 {"key", "value"},
                 {"key", "value2"}
             };
-            var source = new QuerystringProvider.QuerystringSource(querystring);
+            var source = new NameValuePairSource(querystring);
 
             var result = source.GetValues<string>("anotherkey");
 
@@ -64,7 +59,7 @@ namespace ReturnNull.ValueProviders.Tests.DataSources
             {
                 {"key", "true"}
             };
-            var source = new QuerystringProvider.QuerystringSource(querystring);
+            var source = new NameValuePairSource(querystring);
 
             var result = source.GetValues<bool>("key");
 
@@ -80,7 +75,7 @@ namespace ReturnNull.ValueProviders.Tests.DataSources
                 {"key", "false"},
                 {"key", "fal"}
             };
-            var source = new QuerystringProvider.QuerystringSource(querystring);
+            var source = new NameValuePairSource(querystring);
 
             var result = source.GetValues<bool>("key");
 
@@ -97,7 +92,7 @@ namespace ReturnNull.ValueProviders.Tests.DataSources
                 {"anotherKey", "value"},
                 {"amount", "100.03"}
             };
-            var source = new QuerystringProvider.QuerystringSource(querystring);
+            var source = new NameValuePairSource(querystring);
 
             var result = source.GetValues<decimal>("amount");
 

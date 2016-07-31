@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace ReturnNull.ValueProviders
 {
-    public class ValueProvider
+    public class ValueProvider : IValueProvider
     {
         private readonly IDictionary<string, IValueSource> _datasources;
 
