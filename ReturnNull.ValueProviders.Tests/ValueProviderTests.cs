@@ -11,19 +11,19 @@ namespace ReturnNull.ValueProviders.Tests
     public class ValueProviderTests
     {
         [Test]
-        public void ValueProvider_WhenNotGivenDataSources_ShouldThrowArgumentException()
+        public void ValueProvider_WhenNotGivenValueSources_ShouldThrowArgumentException()
         {
             Assert.Throws<ArgumentNullException>(() => new ValueProvider(null));
         }
 
         [Test]
-        public void ValueProvider_WhenGivenEmptySetOfDataSources_ShouldThrowArgumentException()
+        public void ValueProvider_WhenGivenEmptySetOfValueSources_ShouldThrowArgumentException()
         {
             Assert.Throws<ArgumentException>(() => new ValueProvider(new Dictionary<string, IValueSource>()));
         }
 
         [Test]
-        public void GetValues_GivenMultipleDataSources_ShouldGetValuesFromAllSources()
+        public void GetValues_GivenMultipleValueSources_ShouldGetValuesFromAllSources()
         {
             var mocks = new List<Mock<IValueSource>>()
             {
@@ -40,7 +40,7 @@ namespace ReturnNull.ValueProviders.Tests
         }
 
         [Test]
-        public void GetValues_GivenMultipleDataSources_ShouldReturnAllValuesFromAllSources()
+        public void GetValues_GivenMultipleValueSources_ShouldReturnAllValuesFromAllSources()
         {
             var sources = new Dictionary<string, IValueSource>
             {
@@ -56,7 +56,7 @@ namespace ReturnNull.ValueProviders.Tests
         }
 
         [Test]
-        public void GetValue_GivenMultipleDataSources_ShouldReturnFirstValueFromFirstDataSource()
+        public void GetValue_GivenMultipleValueSources_ShouldReturnFirstValueFromFirstValueSource()
         {
             var sources = new Dictionary<string, IValueSource>
             {
@@ -72,7 +72,7 @@ namespace ReturnNull.ValueProviders.Tests
         }
 
         [Test]
-        public void GetValue_GivenMultipleDataSources_IncludingSourcesWithNoRelevantData_ShouldReturnFirstValueFromFirstDataSource()
+        public void GetValue_GivenMultipleValueSources_IncludingSourcesWithNoRelevantData_ShouldReturnFirstValueFromFirstValueSource()
         {
             var sources = new Dictionary<string, IValueSource>
             {
@@ -103,7 +103,7 @@ namespace ReturnNull.ValueProviders.Tests
         }
 
         [Test]
-        public void GetValue_GivenMultipleSources_WhenFirstSourceHasData_ShouldNotAskOtherDataSources()
+        public void GetValue_GivenMultipleSources_WhenFirstSourceHasData_ShouldNotAskOtherValueSources()
         {
             var mocks = new List<Mock<IValueSource>>()
             {
@@ -306,7 +306,7 @@ namespace ReturnNull.ValueProviders.Tests
         }
 
         [Test]
-        public void Preferring_GivenPreferredSources_ShouldCreateProviderThatContainsAllDataSources()
+        public void Preferring_GivenPreferredSources_ShouldCreateProviderThatContainsAllValueSources()
         {
             var sources = new Dictionary<string, IValueSource>
             {
@@ -337,6 +337,41 @@ namespace ReturnNull.ValueProviders.Tests
             ex.Message.ShouldContain("'source100'");
             ex.Message.ShouldContain("'source4'");
             ex.Message.ShouldNotContain("'source1'");
+        }
+
+        [Test]
+        public void GetValue_GivenAKey_ShouldSendKeyToValueSources()
+        {
+            var mocks = new List<Mock<IValueSource>>()
+            {
+                new Mock<IValueSource>(),
+                new Mock<IValueSource>(),
+                new Mock<IValueSource>()
+            };
+            var sources = ToDictionary(mocks);
+            var provider = new ValueProvider(sources);
+
+            provider.GetValue<int>("uniqueKey");
+
+            mocks.ToList().ForEach(m => m.Verify(s => s.GetValues<int>("uniqueKey")));
+        }
+
+        [Test]
+        public void TryGetValue_GivenAKey_ShouldSendKeyToValueSources()
+        {
+            var mocks = new List<Mock<IValueSource>>()
+            {
+                new Mock<IValueSource>(),
+                new Mock<IValueSource>(),
+                new Mock<IValueSource>()
+            };
+            var sources = ToDictionary(mocks);
+            var provider = new ValueProvider(sources);
+
+            int value;
+            provider.TryGetValue("uniqueKey", out value);
+
+            mocks.ToList().ForEach(m => m.Verify(s => s.GetValues<int>("uniqueKey")));
         }
 
         public class MockValueSource : IValueSource

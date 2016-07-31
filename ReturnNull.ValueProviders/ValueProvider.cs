@@ -22,13 +22,13 @@ namespace ReturnNull.ValueProviders
 
         public T GetValue<T>(string key, T defaultValue = default(T))
         {
-            var values = GetValues<T>("key").Take(1).ToList();
+            var values = GetValues<T>(key).Take(1).ToList();
             return values.Any() ? values.First() : defaultValue;
         }
 
         public bool TryGetValue<T>(string key, out T value)
         {
-            var values = GetValues<T>("key").Take(1).ToList();
+            var values = GetValues<T>(key).Take(1).ToList();
             if (values.Any())
             {
                 value = values.First();
