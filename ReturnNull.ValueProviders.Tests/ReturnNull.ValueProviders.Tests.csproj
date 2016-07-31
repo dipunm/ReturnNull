@@ -85,9 +85,6 @@
     <Compile Include="Web\DataSourceConfigTests.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\ReturnNull.ValueProviders.Web\ReturnNull.ValueProviders.Web.csproj">
       <Project>{877435A7-75BD-418E-85D3-5416351B532F}</Project>
       <Name>ReturnNull.ValueProviders.Web</Name>
@@ -99,6 +96,9 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="DataSources\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
